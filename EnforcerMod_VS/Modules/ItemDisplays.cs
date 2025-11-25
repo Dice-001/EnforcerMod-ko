@@ -37,11 +37,10 @@ namespace Modules {
         }
 
         private static void CreateFuckingGatDrone() {
-            ItemDisplayRuleSet itemDisplayRuleSet = RoR2.LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponent<ModelLocator>().modelTransform.GetComponent<CharacterModel>().itemDisplayRuleSet;
 
-            gatDronePrefab = LoadDisplay("DisplayGoldGat").InstantiateClone("DisplayEnforcerGatDrone", false);
+            var gatDroneFollowerPrefab = LoadDisplay("DisplayGoldGat").InstantiateClone("DisplayEnforcerGatDroneFollower", false);
 
-            GameObject gatDrone = Asset.gatDrone.InstantiateClone("GatDrone", false);
+            GameObject gatDrone = Asset.gatDroneDisplayFollower.InstantiateClone("GatDroneDisplay", false);
 
             Material gatMaterial = gatDrone.GetComponentInChildren<MeshRenderer>().material;
             Material newMaterial = new Material(Asset.hotpoo);
@@ -52,25 +51,35 @@ namespace Modules {
             newMaterial.SetColor("_EmColor", Color.black);
             newMaterial.SetFloat("_NormalStrength", 0);
 
-            gatDrone.transform.parent = gatDronePrefab.transform;
+            gatDrone.transform.parent = gatDroneFollowerPrefab.transform;
             gatDrone.transform.localPosition = new Vector3(-0.025f, -3.1f, 0);
             gatDrone.transform.localRotation = Quaternion.Euler(new Vector3(-90, 90, 0));
             gatDrone.transform.localScale = new Vector3(175, 175, 175);
 
-            CharacterModel.RendererInfo[] infos = gatDronePrefab.GetComponent<ItemDisplay>().rendererInfos;
-            CharacterModel.RendererInfo[] newInfos = new CharacterModel.RendererInfo[]
-            {
-                infos[0],
-                new CharacterModel.RendererInfo
-                {
-                    renderer = gatDrone.GetComponentInChildren<MeshRenderer>(),
-                    defaultMaterial = newMaterial,
-                    defaultShadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On,
-                    ignoreOverlays = false
-                }
-            };
+            UnityEngine.Object.Destroy(gatDrone.GetComponent<ItemDisplay>());
 
-            gatDronePrefab.GetComponent<ItemDisplay>().rendererInfos = newInfos;
+            //CharacterModel.RendererInfo[] infos = gatDronePrefab.GetComponent<ItemDisplay>().rendererInfos;
+            //CharacterModel.RendererInfo[] newInfos = new CharacterModel.RendererInfo[]
+            //{
+            //    infos[0],
+            //    new CharacterModel.RendererInfo
+            //    {
+            //        renderer = gatDrone.GetComponentInChildren<MeshRenderer>(),
+            //        defaultMaterial = newMaterial,
+            //        defaultShadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On,
+            //        ignoreOverlays = false
+            //    }
+            //};
+            //gatDronePrefab.GetComponent<ItemDisplay>().rendererInfos = newInfos;
+
+            gatDronePrefab = Asset.gatDroneDisplay.InstantiateClone("DisplayEnforcerGatDrone", false);
+
+            gatDronePrefab.AddComponent<ItemDisplay>();
+            ItemFollower follower = gatDronePrefab.AddComponent<ItemFollower>();
+            follower.followerPrefab = gatDroneFollowerPrefab;
+            follower.targetObject = gatDronePrefab;
+            follower.distanceDampTime = 0.1f;
+            follower.distanceMaxSpeed = 60;
 
             itemDisplayPrefabs["DisplayGoldGatDrone"] = gatDronePrefab;
         }

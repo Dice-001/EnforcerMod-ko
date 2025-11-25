@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using EntityStates;
@@ -44,7 +44,7 @@ namespace EnforcerPlugin {
     [BepInDependency("com.johnedwa.RTAutoSprintEx", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("pseudopulse.Survariants", BepInDependency.DependencyFlags.SoftDependency)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [BepInPlugin(MODUID, "Enforcer", "3.11.8")]
+    [BepInPlugin(MODUID, "Enforcer", "3.11.9")]
     public class EnforcerModPlugin : BaseUnityPlugin
     {
         public const string MODUID = "com.EnforcerGang.Enforcer";
@@ -934,7 +934,8 @@ namespace EnforcerPlugin {
 
             bool unlocked = LocalUserManager.readOnlyLocalUsersList.Any((LocalUser localUser) => localUser.userProfile.HasUnlockable(EnforcerUnlockables.nemesisUnlockableDef));
 
-            SurvivorCatalog.FindSurvivorDefFromBody(NemforcerPlugin.characterBodyPrefab).hidden = !unlocked;
+            var survivordef = SurvivorCatalog.FindSurvivorDefFromBody(NemforcerPlugin.characterBodyPrefab);
+            if(survivordef) survivordef.hidden = !unlocked;
 
             orig(self);
         }
@@ -1009,6 +1010,12 @@ namespace EnforcerPlugin {
             stunGrenadeModel.AddComponent<NetworkIdentity>();
             stunGrenadeModel.AddComponent<ProjectileGhostController>();
 
+            stunGrenadeModel.AddComponent<VFXAttributes>().DoNotPool = true;
+            stunGrenadeModel.transform.GetChild(0).GetChild(0).Find("Smoke").gameObject.AddComponent<ParticleFollowerController>();
+
+            ////enables booling, but makes the entire trail disappear uglily. remove the ParticleFollowerController and VFXAttributes above if we want pooling
+            //stunGrenadeModel.AddComponent<EffectManagerHelper>()._ParticleSystems = stunGrenadeModel.GetComponentsInChildren<ParticleSystem>(true).ToList();
+
             stunGrenadeController.ghostPrefab = stunGrenadeModel;
 
             stunGrenadeImpact.lifetimeExpiredSoundString = "";
@@ -1033,9 +1040,11 @@ namespace EnforcerPlugin {
             ProjectileController shockGrenadeController = shockGrenade.GetComponent<ProjectileController>();
             ProjectileImpactExplosion shockGrenadeImpact = shockGrenade.GetComponent<ProjectileImpactExplosion>();
 
+
             GameObject shockGrenadeModel = Asset.stunGrenadeModelAlt.InstantiateClone("ShockGrenadeGhost", true);
             shockGrenadeModel.AddComponent<NetworkIdentity>();
             shockGrenadeModel.AddComponent<ProjectileGhostController>();
+            shockGrenadeModel.AddComponent<EffectManagerHelper>()._ParticleSystems = shockGrenadeModel.GetComponentsInChildren<ParticleSystem>(true).ToList();
 
             shockGrenadeController.ghostPrefab = shockGrenadeModel;
 

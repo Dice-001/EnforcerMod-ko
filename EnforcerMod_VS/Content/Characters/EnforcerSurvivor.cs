@@ -140,7 +140,24 @@ namespace Modules.Characters {
         }
 
         private void Hooks() {
+
+            //On.EntityStates.GoldGat.BaseGoldGatState.LinkToDisplay += BaseGoldGatState_LinkToDisplay;
         }
+
+        //nvm this thing fires really fast and I don't want an onhook on every bullet
+        //private void BaseGoldGatState_LinkToDisplay(On.EntityStates.GoldGat.BaseGoldGatState.orig_LinkToDisplay orig, EntityStates.GoldGat.BaseGoldGatState self)
+        //{
+        //    orig(self);
+        //    if(self.gunAnimator == null)
+        //    {
+        //        var follower = self.bodyEquipmentSlot.FindActiveEquipmentDisplay()?.GetComponent<ItemFollower>().followerInstance;
+        //        if (follower)
+        //        {
+        //            self.gunAnimator = follower.GetComponentInChildren<Animator>();
+        //            self.gunChildLocator = follower.GetComponentInChildren<ChildLocator>(true);
+        //        }
+        //    }
+        //}
 
         #region characterbody stuff
         protected override void InitializeCharacterBodyAndModel() {

@@ -67,7 +67,6 @@ namespace Modules {
         public static ConfigEntry<bool> physicalVRShieldDown;
         public static ConfigEntry<int> physicalVRShieldDownAngle;
 
-
         public static void ConfigShit(BaseUnityPlugin plugin) {
 
             #region general
@@ -349,23 +348,33 @@ namespace Modules {
             #endregion
 
             #region heavy tf2
+
+            NemforcerPlugin.nemforcerEnabled 
+                = plugin.Config.Bind("09 - heavy tf2",
+                                     "Enable in Character select",
+                                     true,
+                                     "Disable to remove from character select. Body code and assets will still be loaded because this codebase is not organized.");
+
             survariantsCompat
                 = plugin.Config.Bind("09 - heavy tf2",
                                      "Compatibility - Survariants",
-                                     true,
+                                     false,
                                      "Heavy TF2 shows up as a survivor variant.");
 
-            NemforcerPlugin.reworkPassive = plugin.Config.Bind("09 - heavy tf2",
+            NemforcerPlugin.reworkPassive 
+                = plugin.Config.Bind("09 - heavy tf2",
                                      "Passive Rework (Beta)",
                                      false,
                                      "Passive gives bonus regen on melee hit.");
 
-            NemforcerPlugin.nerfStats = plugin.Config.Bind("09 - heavy tf2",
+            NemforcerPlugin.nerfStats 
+                = plugin.Config.Bind("09 - heavy tf2",
                                     "Nerf Stats",
                                     false,
                                     "Nerfs health to be closer to other survivors.");
 
-            HeatCrash.allowChampions = plugin.Config.Bind("09 - heavy tf2",
+            HeatCrash.allowChampions 
+                = plugin.Config.Bind("09 - heavy tf2",
                                      "Heat Crash - Allow Bosses",
                                      true,
                                      "Allow Heat Crash to grab bosses.");

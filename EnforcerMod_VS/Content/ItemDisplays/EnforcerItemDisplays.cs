@@ -834,12 +834,17 @@ namespace EnforcerPlugin {
                                                                 new Vector3(0.208f, 0.208f, 0),
                                                                 new Vector3(0, 270, 0),
                                                                 new Vector3(0.25f, 0.25f, 0.25f)));
-                                                                               //todo: you know what to do
+//fuck it didn't work
+            //itemRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules("GoldGat", 
+            //                                                           ItemDisplays.CreateDisplayRule(ItemDisplays.gatDronePrefab,
+            //                                                                                          "Root", new Vector3(0.0766F, 1.45225F, 0.93559F), new Vector3(325.2988F, 3.73468F, 268.5726F), new Vector3(0.18683F, 0.18683F, 0.18683F)
+            //                                                                                          )));
             itemRules.Add(ItemDisplays.CreateGenericDisplayRule("GoldGat", "DisplayGoldGat",
                                                                 "PauldronR",
                                                                 new Vector3(0.09687F, 0.32573F, 0.22415F),
                                                                 new Vector3(279.4109F, 187.7572F, 345.6136F),
                                                                 new Vector3(0.11175F, 0.11175F, 0.11175F)));
+
             itemRules.Add(ItemDisplays.CreateGenericDisplayRule("BFG", "DisplayBFG",
                                                                 "Chest",
                                                                 new Vector3(0.07101F, 0.41512F, -0.19564F),

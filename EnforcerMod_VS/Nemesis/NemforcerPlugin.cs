@@ -50,6 +50,7 @@ namespace EnforcerPlugin {
 
         public static ConfigEntry<bool> reworkPassive;
         public static ConfigEntry<bool> nerfStats;
+        public static ConfigEntry<bool> nemforcerEnabled;
 
         public SkillLocator skillLocator;
 
@@ -515,7 +516,10 @@ namespace EnforcerPlugin {
         {
             characterDisplayPrefab.AddComponent<NetworkIdentity>();
 
-            Modules.Survivors.RegisterNewSurvivor(characterBodyPrefab, characterDisplayPrefab, "NEMFORCER", EnforcerUnlockables.nemesisUnlockableDef, 5.101f);
+            if (nemforcerEnabled.Value)
+            {
+                Modules.Survivors.RegisterNewSurvivor(characterBodyPrefab, characterDisplayPrefab, "NEMFORCER", EnforcerUnlockables.nemesisUnlockableDef, 5.101f);
+            }
 
             SkillSetup();
 

@@ -94,7 +94,8 @@ namespace Modules {
         public static GameObject nemAxeImpactFX;
         public static GameObject nemAxeImpactFXVertical;
 
-        public static GameObject gatDrone;
+        public static GameObject gatDroneDisplay;
+        public static GameObject gatDroneDisplayFollower;
 
         public static GameObject vrEnforcerDominantHand; //Shotgun hand
         public static GameObject vrEnforcerNonDominantHand; //Shield hand
@@ -239,7 +240,6 @@ namespace Modules {
 
             stunGrenadeModel = MainAssetBundle.LoadAsset<GameObject>("StunGrenade");
             stunGrenadeModel.GetComponentInChildren<MeshRenderer>().material.shader = hotpoo;
-            stunGrenadeModel.transform.GetChild(0).GetChild(0).Find("Smoke").gameObject.AddComponent<ParticleFollowerController>();
 
             stunGrenadeModelAlt = MainAssetBundle.LoadAsset<GameObject>("ShockGrenade");
             //replace the texture here bc the emission is important
@@ -292,7 +292,8 @@ namespace Modules {
             nemAxeImpactFX = LoadEffect("ImpactNemforcerAxe", "", MainAssetBundle);
             nemAxeImpactFXVertical = LoadEffect("ImpactNemforcerAxe_Vertical", "", MainAssetBundle);
 
-            gatDrone = MainAssetBundle.LoadAsset<GameObject>("GatDrone");
+            gatDroneDisplay = MainAssetBundle.LoadAsset<GameObject>("GatDroneDisplay");
+            gatDroneDisplayFollower = MainAssetBundle.LoadAsset<GameObject>("GatDroneDisplayFollower");
 
             mainMat = MainAssetBundle.LoadAsset<Material>("matEnforcerAlt");
 

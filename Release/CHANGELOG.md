@@ -1,4 +1,10 @@
 `3.11.8`
+- fixed smoke grenades smoke never going away
+- attempted to add gat drone back but ran into issues. awaiting whole ass reanimation
+- added disable nemforcer option. only took two years sorry that guy that was asking for it
+    - nullchecked the "hide in css if not unlocked" code, which I believe was causing issues when people tried to disable him by other means.
+
+`3.11.9`
 
 - Disabled shield knockback scaling against 'the guy'
 

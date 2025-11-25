@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1119697198
+CRC: 1348263874
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 77c55c8f96738d967951afd6eba7c276
+    Hash: 04e4e49fc3d9e457b1cba8cfc60af08a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 22683948b82f0a3c5f9e2e598120f52d
+    Hash: 6d67ec95b9999abf9eb04304c33fa487
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -28,9 +28,9 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Enforcer/Enforcer/Textures/psdEnforcer.psd
-- Assets/Enforcer/Enforcer/Textures/psdEnforcerShield.psd
+- Assets/Enforcer/Enforcer/Textures/psdEnforcerGun.psd
 - Assets/FBX/Enfucker/Enfucker_Meshes_Skins.fbx
 - Assets/Enforcer/Enforcer/Textures/psdGM.psd
-- Assets/Enforcer/Enforcer/Textures/psdEnforcerGun.psd
+- Assets/Enforcer/Enforcer/Textures/psdEnforcerShield.psd
 Dependencies:
 - E:/Abbas's stuff VII I think/1337 haxx/ror2lol/Chikara ga minegitte kuru/EnforcerMod/EnforcerMod_Unity/Enforcer/AssetBundles/enforcer
