@@ -178,7 +178,7 @@ namespace EntityStates.Nemforcer {
                                     else if (rb) mass = rb.mass;
 
                                     if (mass <= 100f) mass = 100f;
-                                    if (Config.uncappedShieldBash.Value && mass > 500f) mass = 500f;
+                                    if (charb.bodyIndex == DLC3Content.BodyPrefabs.SolusHeartBody.bodyIndex || (!Config.uncappedShieldBash.Value && mass > 500f)) mass = 500f;
 
                                     force *= mass;
 

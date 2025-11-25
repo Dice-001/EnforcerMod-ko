@@ -254,12 +254,15 @@ namespace EntityStates.Enforcer {
                                         }
                                     }
 
-                                    force *= Mathf.Max(mass / 100f, 1f);
-
-                                    //Champions have a knockback penalty.
-                                    if (hitCharacterBody.isChampion && !Config.uncappedShieldBash.Value)
+                                    if (hitCharacterBody.bodyIndex != DLC3Content.BodyPrefabs.SolusHeartBody.bodyIndex)
                                     {
-                                        force *= bossMult;
+                                        force *= Mathf.Max(mass / 100f, 1f);
+
+                                        //Champions have a knockback penalty.
+                                        if (hitCharacterBody.isChampion && !Config.uncappedShieldBash.Value)
+                                        {
+                                            force *= bossMult;
+                                        }
                                     }
 
                                     /*DamageInfo info = new DamageInfo

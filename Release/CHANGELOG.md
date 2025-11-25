@@ -1,3 +1,7 @@
+`3.11.8`
+
+- Disabled shield knockback scaling against 'the guy'
+
 `3.11.7`
 - fixed for memop udpate
 - *some sounds are still missing*
